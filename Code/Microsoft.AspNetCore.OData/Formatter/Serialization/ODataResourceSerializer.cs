@@ -636,7 +636,11 @@ namespace Microsoft.AspNetCore.OData.Formatter.Serialization
             var links = new List<ODataNestedResourceInfo>();
             foreach (var navProperty in navigationProperties)
             {
-                links.Add(await CreateNavigationLinkAsync(navProperty, resourceContext));
+                ODataNestedResourceInfo navigationLink = await CreateNavigationLinkAsync(navProperty, resourceContext);
+                if (navigationLink != null)
+                {
+                  links.Add(await CreateNavigationLinkAsync(navProperty, resourceContext));
+                }
             }
             return links;
             //foreach (IEdmNavigationProperty navProperty in navigationProperties)

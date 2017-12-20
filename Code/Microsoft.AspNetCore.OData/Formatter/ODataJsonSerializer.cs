@@ -195,9 +195,9 @@ namespace Microsoft.AspNetCore.OData.Formatter
 
             var uri =
                 new Uri(_context.HttpContext.Request.GetDisplayUrl());
-            var baseAddress =
-                uri.Scheme + "://" + uri.Host + (uri.Port == 80 ? "" : ":" + uri.Port) + "/" +
-                "odata";//ODataRoute.Instance.RoutePrefix;
+      var baseAddress =
+          uri.Scheme + "://" + uri.Host + (uri.Port == 80 ? "" : ":" + uri.Port) + "/" +
+          this._odataProperties.RoutePrefix; //"odata";//ODataRoute.Instance.RoutePrefix;
 
             return baseAddress[baseAddress.Length - 1] != '/' ? new Uri(baseAddress + '/') : new Uri(baseAddress);
         }
