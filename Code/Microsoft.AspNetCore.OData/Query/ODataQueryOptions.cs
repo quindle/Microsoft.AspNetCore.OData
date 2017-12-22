@@ -350,7 +350,17 @@ namespace Microsoft.AspNetCore.OData.Query
                     case "$skiptoken":
                         RawValues.SkipToken = kvp.Value;
                         break;
-                }
+                    case "$apply":
+           
+                      
+
+              ApplyQueryOption applyOptions = new ApplyQueryOption(kvp.Value, Context, _queryOptionParser); // new Microsoft.OData.UriParser.Aggregation.ApplyClause();
+              Request.ODataFeature().ApplyClause = applyOptions.ApplyClause;
+            Apply = applyOptions; //.ApplyClause;
+                                       //Request.ODataFeature().ApplyClause = 
+                      break;
+      
+        }
             }
             if (ODataCountMediaTypeMapping.IsCountRequest(Request.HttpContext))
             {
