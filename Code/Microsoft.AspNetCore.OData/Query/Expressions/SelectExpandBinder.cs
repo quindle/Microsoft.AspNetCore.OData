@@ -407,7 +407,8 @@ namespace Microsoft.AspNetCore.OData.Query.Expressions
 
         private Expression CreateTotalCountExpression(Expression source, ExpandedReferenceSelectItem expandItem)
         {
-            if ((expandItem.CountOption == null && !(expandItem is ExpandedCountSelectItem)) ||
+            //if ((expandItem.CountOption == null && !(expandItem is ExpandedCountSelectItem)) ||
+              if ((expandItem.CountOption == null ) ||
                 (expandItem.CountOption != null && !expandItem.CountOption.Value))
             {
                 return null;
@@ -486,7 +487,7 @@ namespace Microsoft.AspNetCore.OData.Query.Expressions
                         propertyExpression.PageSize = _settings.PageSize.Value;
                     }
                 }
-                propertyExpression.OnlyCount = expandItem is ExpandedCountSelectItem;
+                //propertyExpression.OnlyCount = expandItem is ExpandedCountSelectItem;
                 propertyExpression.CountOption = countExpression != null;
                 propertyExpression.TotalCount = countExpression;
 
@@ -836,12 +837,12 @@ namespace Microsoft.AspNetCore.OData.Query.Expressions
 
                     properties[navigationSegment.NavigationProperty] = expandItem;
                 }
-                else if (selectItem is ExpandedCountSelectItem)
-                {
-                    var countItem = selectItem as ExpandedCountSelectItem;
-                    NavigationPropertySegment navigationSegment = countItem.PathToNavigationProperty.LastSegment as NavigationPropertySegment;
-                    properties[navigationSegment.NavigationProperty] = countItem;
-                }
+                //else if (selectItem is ExpandedCountSelectItem)
+                //{
+                //    var countItem = selectItem as ExpandedCountSelectItem;
+                //    NavigationPropertySegment navigationSegment = countItem.PathToNavigationProperty.LastSegment as NavigationPropertySegment;
+                //    properties[navigationSegment.NavigationProperty] = countItem;
+                //}
             }
 
             return properties;
